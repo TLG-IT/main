@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Reception TV Display</title>
+
+<style>
+html,body{
+    margin:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#000;
+}
+
+iframe{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
+    border:0;
+}
+</style>
+
+</head>
+
+<body>
+
+<iframe
+id="player"
+src=""
+allow="autoplay; fullscreen"
+allowfullscreen>
+</iframe>
+
+
+<script>
+
+const videos=[
+"NVUsDQhtq6U",
+"gv6KQlQK7tU",
+"JuAuWy-dCkc",
+"jcWhuuJ1X-U",
+"FanL_bNsrSw"
+];
+
+let current=0;
+
+const player=document.getElementById("player");
+
+
+function playVideo(){
+
+let id=videos[current];
+
+player.src =
+"https://www.youtube.com/embed/" + id +
+"?autoplay=1" +
+"&mute=1" +
+"&controls=0" +
+"&rel=0" +
+"&modestbranding=1" +
+"&playsinline=1" +
+"&enablejsapi=1" +
+"&origin=https://www.youtube.com";
+
+}
+
+
+// Change video automatically
+// Change this value only if your videos have different lengths
+const checkInterval=setInterval(()=>{
+
+},1000);
+
+
+playVideo();
+
+
+// Full screen attempt
+window.onload=function(){
+
+document.documentElement.requestFullscreen()
+.catch(()=>{});
+
+};
+
+
+// Hide mouse
+
+let timer;
+
+document.onmousemove=function(){
+
+document.body.style.cursor="default";
+
+clearTimeout(timer);
+
+timer=setTimeout(()=>{
+document.body.style.cursor="none";
+},3000);
+
+};
+
+</script>
+
+</body>
+</html>
