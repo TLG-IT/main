@@ -31,7 +31,6 @@ iframe{
 
 <iframe
 id="player"
-src=""
 allow="autoplay; fullscreen"
 allowfullscreen>
 </iframe>
@@ -39,71 +38,51 @@ allowfullscreen>
 
 <script>
 
-const videos=[
-"NVUsDQhtq6U",
-"gv6KQlQK7tU",
-"JuAuWy-dCkc",
-"jcWhuuJ1X-U",
-"FanL_bNsrSw"
-];
-
-let current=0;
-
-const player=document.getElementById("player");
+const videos =
+"NVUsDQhtq6U,gv6KQlQK7tU,JuAuWy-dCkc,jcWhuuJ1X-U,FanL_bNsrSw";
 
 
-function playVideo(){
-
-let id=videos[current];
-
-player.src =
-"https://www.youtube.com/embed/" + id +
+document.getElementById("player").src =
+"https://www.youtube.com/embed/NVUsDQhtq6U" +
 "?autoplay=1" +
 "&mute=1" +
 "&controls=0" +
 "&rel=0" +
 "&modestbranding=1" +
 "&playsinline=1" +
-"&enablejsapi=1" +
-"&origin=https://www.youtube.com";
-
-}
+"&loop=1" +
+"&playlist=" + videos;
 
 
-// Change video automatically
-// Change this value only if your videos have different lengths
-const checkInterval=setInterval(()=>{
 
-},1000);
+// Try full screen automatically
+document.addEventListener("DOMContentLoaded",()=>{
 
+    let elem=document.documentElement;
 
-playVideo();
+    if(elem.requestFullscreen){
+        elem.requestFullscreen().catch(()=>{});
+    }
 
-
-// Full screen attempt
-window.onload=function(){
-
-document.documentElement.requestFullscreen()
-.catch(()=>{});
-
-};
+});
 
 
-// Hide mouse
+// Hide mouse cursor
 
 let timer;
 
 document.onmousemove=function(){
 
-document.body.style.cursor="default";
+    document.body.style.cursor="default";
 
-clearTimeout(timer);
+    clearTimeout(timer);
 
-timer=setTimeout(()=>{
-document.body.style.cursor="none";
-},3000);
+    timer=setTimeout(()=>{
+        document.body.style.cursor="none";
+    },2000);
 
 };
+
 
 </script>
 
