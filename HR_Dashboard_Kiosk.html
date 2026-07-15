@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HR Dashboard Kiosk</title>
+<style>
+html,body{margin:0;height:100%;overflow:hidden;background:#111;font-family:Arial,sans-serif}
+#top{position:fixed;top:0;left:0;right:0;height:36px;background:#0077cc;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:0 12px;z-index:10}
+iframe{position:absolute;top:36px;left:0;width:100%;height:calc(100% - 36px);border:0;display:none}
+iframe.active{display:block}
+</style></head><body>
+<div id="top"><div id="title">Timesheets</div><div>Next switch in <span id="count">170</span>s</div></div>
+<iframe class="active" src="https://tinyurl.com/kb6jbzbc"></iframe>
+<iframe src="https://tinyurl.com/5dz9hhc6"></iframe>
+<script>
+const titles=["Timesheets","Employee Database"];
+const frames=document.querySelectorAll("iframe");
+let current=0,remaining=170;
+function show(i){
+ frames.forEach(f=>f.classList.remove("active"));
+ frames[i].classList.add("active");
+ document.getElementById("title").textContent=titles[i];
+ current=i;remaining=170;
+}
+setInterval(()=>{remaining--;document.getElementById("count").textContent=remaining;if(remaining<=0)show((current+1)%frames.length);},1000);
+document.addEventListener("click",()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen();},{once:true});
+</script></body></html>
